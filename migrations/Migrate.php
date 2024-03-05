@@ -2,16 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Danilocgsilva\WebEntitie\Migrations;
+namespace Danilocgsilva\WebEntities\Migrations;
 
 use PDO;
 
-class Migrations
+class Migrate
 {
     public function __construct(private PDO $pdo) {}
 
-    public function runString(string $string): void
+    /**
+     * Run a sql expression
+     *
+     * @param string $string
+     * @param array $placeholders
+     * @return void
+     */
+    public function runString(string $string, array $placeholders = []): void
     {
         $preResults = $this->pdo->prepare($string);
+        $preResults->execute($placeholders);
     }
 }

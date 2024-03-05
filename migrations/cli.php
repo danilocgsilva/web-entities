@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use PDO;
-use Danilocgsilva\WebEntitie\Migrations\Migrations;
+use Danilocgsilva\WebEntities\Migrations\Migrate;
 use Danilocgsilva\WebEntities\Utils\FileSystem;
 
 require_once("../vendor/autoload.php");
 
-$dns = "mysql:" . getenv("WEB_ENTITIES_DB_HOST") . ";dbname=" . getenv("WEB_ENTITIES_DB_NAME") . ";charset=UTF-8";
+$dns = "mysql:host=" . getenv("WEB_ENTITIES_DB_HOST") . ";charset=utf8mb4";
 $pdo = new PDO($dns, getenv("WEB_ENTITIES_DB_USER"), getenv("WEB_ENTITIES_DB_PASSWORD"));
-$createTableString = FileSystem::getFileContent("01-database-table.sql");
+$createTableStringPlaceholder = FileSystem::getFileContent("01-database-table.sql.template");
+$createTableString = sprintf($createTableStringPlaceholder, getenv("WEB_ENTITIES_DB_NAME"));
 
-$migrations = new Migrations($pdo);
+$migrations = new Migrate($pdo);
 $migrations->runString($createTableString);

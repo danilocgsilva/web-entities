@@ -2,19 +2,15 @@
     "name": "danilocgsilva/web-entities",
     "autoload": {
         "psr-4": {
-            "Danilocgsilva\\WebEntities\\": [
-                "src/"
-            ]
+            "Danilocgsilva\\WebEntities\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Danilocgsilva\\WebEntities\\": [
-                "src/",
-                "migrations/",
-                "utils/"
-            ]
-        } 
+            "Danilocgsilva\\WebEntities\\": "src/",
+            "Danilocgsilva\\WebEntities\\Utils\\": "utils/",
+            "Danilocgsilva\\WebEntities\\Migrations\\": "migrations/"
+        }
     },
     "require": {}
 }
