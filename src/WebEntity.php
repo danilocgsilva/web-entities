@@ -19,7 +19,7 @@ class WebEntity
      */
     public function addProperty(string $propertyName, string $propertyValue): WebEntity
     {
-        $this->properties[$propertyName] = $propertyValue;
+        $this->properties[$propertyName][] = $propertyValue;
         return $this;
     }
 
@@ -29,7 +29,7 @@ class WebEntity
      * @param string $propertyName
      * @return string
      */
-    public function getProperty(string $propertyName): string
+    public function getProperty(string $propertyName): array
     {
         return $this->properties[$propertyName];
     }

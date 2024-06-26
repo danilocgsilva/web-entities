@@ -14,6 +14,6 @@ class WebEntityTest extends TestCase
         $phone = "55-5545-2312";
         $wEntity = new WebEntity("http://www.dns.com/entity/1");
         $wEntity->addProperty("phone", $phone);
-        $this->assertSame($phone, $wEntity->getProperty("phone"));
+        $this->assertSame($phone, $wEntity->getProperty("phone")[0]);
     }
 }
