@@ -6,11 +6,18 @@
             "Danilocgsilva\\WebEntities\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Danilo Silva",
             "email": "contact@danilocgsilva.me"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^11.2"
+    }
 }
