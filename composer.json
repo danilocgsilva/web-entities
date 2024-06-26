@@ -1,0 +1,16 @@
+{
+    "name": "danilocgsilva/web-entities",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Danilocgsilva\\WebEntities\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Danilo Silva",
+            "email": "contact@danilocgsilva.me"
+        }
+    ],
+    "require": {}
+}
