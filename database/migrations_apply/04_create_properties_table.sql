@@ -1,0 +1,6 @@
+CREATE TABLE `properties` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `values` VARCHAR(255) NOT NULL,
+    `entity_id` INT UNSIGNED NOT NULL,
+    `property_name` VARCHAR(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;

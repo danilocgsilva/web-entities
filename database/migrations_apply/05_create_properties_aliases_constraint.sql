@@ -1,0 +1,1 @@
+ALTER TABLE `properties` ADD CONSTRAINT `properties_alias_entity_id` FOREIGN KEY (`entity_id`) REFERENCES `entities` (`id`);

@@ -1,0 +1,1 @@
+ALTER TABLE `aliases` DROP FOREIGN KEY `aliases_entities_entities_id`;
