@@ -33,4 +33,9 @@ class WebEntity
     {
         return $this->properties[$propertyName];
     }
+
+    public function getProperties(): array
+    {
+        return $this->properties;
+    }
 }
