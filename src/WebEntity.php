@@ -7,8 +7,10 @@ namespace Danilocgsilva\WebEntities;
 class WebEntity
 {
     private array $properties = [];
+
+    private array $aliases = [];
     
-    public function __construct(public string $address) {}
+    public function __construct() {}
 
     /**
      * Add an arbitrary property for entity.
@@ -37,5 +39,16 @@ class WebEntity
     public function getProperties(): array
     {
         return $this->properties;
+    }
+
+    public function getAliases(): array
+    {
+        return $this->aliases;
+    }
+
+    public function addAlias(string $alias): self
+    {
+        $this->aliases[] = $alias;
+        return $this;
     }
 }

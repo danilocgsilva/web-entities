@@ -1,1 +1,1 @@
-ALTER TABLE aliases ADD CONSTRAINT `aliases_entities_entities_id` FOREIGN KEY (`entities_id`) REFERENCES `entities` (`id`);
+ALTER TABLE aliases ADD CONSTRAINT `aliases_entities_entities_id` FOREIGN KEY (`entity_id`) REFERENCES `entities` (`id`);
