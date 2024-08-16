@@ -25,6 +25,12 @@ class Repository
         return $this;
     }
 
+    public function delete(int $entityId): void
+    {
+        $preResult = $this->pdo->prepare("DELETE FROM entities WHERE id = :entity_id;");
+        $preResult->execute([':entity_id' => $entityId]);
+    }
+
     private function writeEntityTable(): self
     {
         $preResult = $this->pdo->prepare("INSERT INTO `entities` VALUES ();");
@@ -47,6 +53,14 @@ class Repository
 
     private function writePropertiesTable(): self
     {
+        foreach ($this->savingWebEntity->getProperties() as $key => $propertyValue) {
+            $preResults = $this->pdo->prepare("INSERT INTO properties (`values`, `entity_id`, `property_name`) VALUES (:values, :entity_id, :property_name);");
+            $preResults->execute([
+                ':values' => $propertyValue,
+                ':entity_id' => $this->entityId,
+                ':property_name' => $key
+            ]);
+        }
         return $this;
     }
 
