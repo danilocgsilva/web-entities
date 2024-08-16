@@ -9,11 +9,11 @@ use Danilocgsilva\WebEntities\WebEntity;
 
 class Repository
 {
-    private function __construct(private PDO $pdo) {}
-
     private WebEntity $savingWebEntity;
 
     private int $entityId;
+
+    public function __construct(private PDO $pdo) {}
 
     public function save(WebEntity $webEntity): self
     {
