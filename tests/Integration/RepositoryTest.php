@@ -43,12 +43,12 @@ class RepositoryTest extends TestCase
     public function testSeveralAliases(): void
     {
         $this->cleanTable('aliases', 'entities');
-        
-        $entity = new WebEntity();
-        $entity->addAlias("Robert, the king");
-        $entity->addAlias("Robert, the poor man");
 
-        $this->repository->save($entity);
+        $this->repository->save(
+            (new WebEntity())
+            ->addAlias("Robert, the king")
+            ->addAlias("Robert, the poor man")
+        );
 
         $this->assertSame(1, $this->countEntries('entities'));
         $this->assertSame(2, $this->countEntries('aliases'));
@@ -58,11 +58,11 @@ class RepositoryTest extends TestCase
     {
         $this->cleanTable('properties', 'aliases', 'entities');
 
-        $entity = new WebEntity();
-        $entity->addAlias("Robert, the king");
-        $entity->addProperty("phone", "443311-2345");
-
-        $this->repository->save($entity);
+        $this->repository->save(
+            (new WebEntity())
+            ->addAlias("Robert, the king")
+            ->addProperty("phone", "443311-2345")
+        );
 
         $this->assertSame(1, $this->countEntries('entities'));
         $this->assertSame(1, $this->countEntries('aliases'));
@@ -72,11 +72,28 @@ class RepositoryTest extends TestCase
     public function testDelete(): void
     {
         $this->cleanTable('properties', 'aliases', 'entities');
-        $this->assertSame(0, $this->countEntries('entities'));
+
         $this->fillTable('entities', [[]]);
         $this->assertSame(1, $this->countEntries('entities'));
         $this->repository->delete(1);
         $this->assertSame(0, $this->countEntries('entities'));
+    }
+
+    public function testSeveralProperties(): void
+    {
+        $this->cleanTable('properties', 'aliases', 'entities');
+
+        $this->repository->save(
+            (new WebEntity())
+            ->addAlias("Hebe")
+            ->addProperty("phone", "6221-2332")
+            ->addProperty("phone", "7742-4453")
+            ->addProperty("phone", "3321-1212")
+        );
+
+        $this->assertSame(1, $this->countEntries('entities'));
+        $this->assertSame(1, $this->countEntries('aliases'));
+        $this->assertSame(3, $this->countEntries('properties'));
     }
 
     private function cleanTable(string ...$tablesName): void
@@ -104,6 +121,7 @@ class RepositoryTest extends TestCase
                     $keyArray[] = $valueKeyPair[0];
                     $valuesArray[] = $valueKeyPair[1];
                 }
+
                 $query = "INSERT INTO %s (" . 
                 implode(", ", $keyArray) . 
                 ") VALUES (" . 

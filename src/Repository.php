@@ -54,7 +54,6 @@ class Repository
     private function writePropertiesTable(): self
     {
         foreach ($this->savingWebEntity->getProperties() as $key => $propertyValue) {
-            
             foreach ($propertyValue as $unitValue) {
                 $preResults = $this->pdo->prepare("INSERT INTO properties (`values`, `entity_id`, `property_name`) VALUES (:values, :entity_id, :property_name);");
                 $preResults->execute([
